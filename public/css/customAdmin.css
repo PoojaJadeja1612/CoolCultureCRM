@@ -1,0 +1,55 @@
+label.is-invalid{
+    color: red !important;
+}
+
+.companyLogo{
+    width: 280px !important;
+}
+
+.logoColumn{
+    display: flex;
+    justify-content: center;
+}
+
+.group .form-text {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+   
+    padding: 10px;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .grid-container label{ 
+    padding: 5px;
+    border: 1px solid lightgray;
+  }
+  
+
+  .lastLogin {
+    position: absolute;
+  bottom: 0px;
+  right: 5px;
+  }
+  
+  @media (max-width: 767px) {
+    .lastLogin {
+      position: absolute;
+  bottom: 20px;
+  right: 20px;
+    }
+  }
