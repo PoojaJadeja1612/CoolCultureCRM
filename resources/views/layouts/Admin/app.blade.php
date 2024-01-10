@@ -531,6 +531,14 @@
                                                     </a>
                                                 </li>
                                             @endif
+                                            <li class="menu-item" aria-haspopup="true">
+                                                    <a href="{{ route('technicianReport') }}" class="menu-link">
+                                                        <i class="menu-bullet ">
+                                                            <span></span>
+                                                        </i>
+                                                        <span class="menu-text">Technicians Report</span>
+                                                    </a>
+                                                </li>
                                             @if (Auth::user()->hasPermissionTo('permission-list'))
                                                 <li class="menu-item" aria-haspopup="true">
                                                     <a href="{{ route('permission.index') }}" class="menu-link">

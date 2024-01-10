@@ -8,12 +8,12 @@
                     Users Management
                 </h3>
             </div>
-            <div class="card-toolbar">
+            {{-- <div class="card-toolbar">
                 @can('user-create')
                     <a href="{{ route('users.create') }}" class="btn btn-primary font-weight-bolder">
                         </span>Add New User</a>
                 @endcan
-            </div>
+            </div> --}}
         </div>
         {{-- {{ dd($data) }} --}}
         <div class="card-body">

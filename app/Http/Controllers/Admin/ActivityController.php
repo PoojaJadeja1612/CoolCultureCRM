@@ -50,12 +50,14 @@ class ActivityController extends Controller
 
         $work = $request->get('work');
         $remark = $request->get('remark');
+        $quantity = $request->get('quantity');
 
         for ($i = 0; $i <  count($request->get('work')); $i++) {
             $activityWork = new ActivityWorkDetails;
             $activityWork->activity_id = $activity->id;
             $activityWork->work = $work[$i];
             $activityWork->remark = $remark[$i];
+            $activityWork->quantity = $quantity[$i];
             $activityWork->save();
         }
 
@@ -91,6 +93,7 @@ class ActivityController extends Controller
 
         $work = $request->get('work');
         $remark = $request->get('remark');
+        $quantity = $request->get('quantity');
 
         $activityWork = ActivityWorkDetails::where('activity_id', $id)->get();
 
@@ -99,6 +102,7 @@ class ActivityController extends Controller
                 $aw->activity_id = $activity->id;
                 $aw->work = $work[$index];
                 $aw->remark = $remark[$index];
+                $aw->quantity = $quantity[$index];
                 $aw->update();
             }
         } else {
@@ -107,6 +111,7 @@ class ActivityController extends Controller
                 $newActivityWork->activity_id = $activity->id;
                 $newActivityWork->work = $work[$i];
                 $newActivityWork->remark = $remark[$i];
+                $newActivityWork->quantity = $quantity[$i];
                 $newActivityWork->save();
             }
         }

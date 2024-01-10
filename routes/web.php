@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\permissionController;
 use App\Http\Controllers\Admin\ProxyLoginController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TechnicianController;
+use App\Http\Controllers\Admin\TechnicianReportController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WorkController;
 use App\Http\Controllers\Auth\Customer\CustomerLoginController;
@@ -74,6 +75,9 @@ Route::group(['middleware' => ['auth', 'logHis', 'setMailConfiguration']], funct
         Route::resource('technician', TechnicianController::class);
         Route::resource('work', WorkController::class);
         Route::resource('activity', ActivityController::class);
+        Route::post('CreateCustomerinActivity',[CustomerAdminController::class, 'CreateCustomerinActivity'])->name('CreateCustomerinActivity');
+        Route::get('technicianReport', [TechnicianReportController::class, 'index'])->name('technicianReport');
+        Route::get('technicianSearch', [TechnicianReportController::class, 'create'])->name('technicianSearch');
         Route::get('/getaddress', [ActivityController::class, 'getaddress'])->name('getaddress');
         Route::get('emailSetting', [CompanyMailSetting::class, 'emailSetting'])->name('emailSetting');
         Route::post('emailSettingUpdate', [CompanyMailSetting::class, 'emailSettingUpdate'])->name('emailSettingUpdate');

@@ -69,7 +69,11 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group col-md-7">
+                <div class="form-group col-md-2">
+                    <label>Quantity</label>
+                    <input type="text" name="quantity[0]" placeholder="Quantity" class="form-control" value="{{ $activityWork[0]->quantity }}">
+                </div>
+                <div class="form-group col-md-5">
                     <label>Remark</label>
                     <input type="text" name="remark[0]" placeholder="Remark" class="form-control" value="{{ $activityWork[0]->remark }}">
                 </div>
@@ -189,7 +193,11 @@
                             ${options}
                         </select>
                     </div>
-                    <div class="form-group col-md-7">
+                    <div class="form-group col-md-2">
+                    <label>Quantity</label>
+                    <input type="text" name="quantity[]" placeholder="Quantity" class="form-control">
+                    </div>
+                    <div class="form-group col-md-5">
                         <label>Remark</label>
                         {!! Form::text('remark[]', null, ['placeholder' => 'Remark', 'class' => 'form-control']) !!}
                     </div>
@@ -232,7 +240,9 @@
         options += '<option value="{{ $works->id }}" ' + selected + '>{{ $works->name }}</option>';
     @endforeach
                 $(wrapper).append(
-                    '<div class="row"><div class="form-group col-md-5"><label>Work Done</label><select id="work${i}" name="work[]" class="form-control work"><option value="" selected disabled>Select Work Done</option>"'+ options +'"</select></div><div class="form-group col-md-7"><label>Remark</label><input type="text" name="remark[]" placeholder="Remark" class="form-control" value="' +
+                    '<div class="row"><div class="form-group col-md-5"><label>Work Done</label><select id="work${i}" name="work[]" class="form-control work"><option value="" selected disabled>Select Work Done</option>"'+ options +'"</select></div><div class="form-group col-md-2"><label>Quantity</label><input type="text" name="quantity[]" placeholder="Quantity" class="form-control" value="' +
+                        getrecord[i].quantity +
+                        '"></div><div class="form-group col-md-5"><label>Remark</label><input type="text" name="remark[]" placeholder="Remark" class="form-control" value="' +
                         getrecord[i].remark +
                         '"></div></div>'
                 );

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 class CustomerAdminController extends Controller
 {
@@ -170,5 +171,25 @@ class CustomerAdminController extends Controller
 
         return redirect()->route('customer.index')
             ->with('success', 'Customer password send successfully');
+    }
+
+    public function CreateCustomerinActivity(Request $request){
+
+        $createActivityCustomer = new Customer;
+        $createActivityCustomer->name = $request->get('name');
+        $createActivityCustomer->email = $request->get('email');
+        $createActivityCustomer->number = $request->get('number');
+        $createActivityCustomer->address1 = $request->get('address1');
+        $createActivityCustomer->address2 = $request->get('address2');
+        $createActivityCustomer->city = $request->get('city');
+        $createActivityCustomer->state = $request->get('state');
+        $createActivityCustomer->contry = $request->get('contry');
+        $createActivityCustomer->pincode = $request->get('pincode');
+        $createActivityCustomer->userStatus = '1';
+        $createActivityCustomer->createBy = Auth::user()->id;
+        $createActivityCustomer->save();
+
+        return Redirect::back()->with('message', 'Create Customer Successfully !!.....');
+
     }
 }
