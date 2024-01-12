@@ -46,7 +46,7 @@
                                 <td>
                                     @if (!empty($user->getRoleNames()))
                                         @foreach ($user->getRoleNames() as $v)
-                                            {{ $v }},
+                                            {{ $v }}
                                         @endforeach
                                     @endif
                                 </td>
@@ -65,10 +65,10 @@
                                         <a class="btn btn-sm btn-clean btn-icon" href="{{ route('users.edit', $user->id) }}"
                                             title="Edit"><i class="la la-edit"></i></a>
                                     @endcan
-                                    @can('password-reset')
+                                    {{-- @can('password-reset')
                                         <a class="btn btn-sm btn-clean btn-icon" href="password/{{ $user->id }}"
                                             title="Change Password"><i class="la la-unlock"></i></a>
-                                    @endcan
+                                    @endcan --}}
 
                                     @can('user-delete')
                                         <a class="btn btn-sm btn-clean btn-icon" data-bs-toggle="modal"

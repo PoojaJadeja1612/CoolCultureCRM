@@ -66,7 +66,7 @@ class TechnicianController extends Controller
         $technician->updatedBy = $userLoginId;
         $technician->update();
 
-        return redirect()->route('technician.index')->with('success', 'Technician update successfully');;
+        return redirect()->route('technician.index')->with('success', 'Technician updated successfully');;
     }
 
     public function destroy($id){

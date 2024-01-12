@@ -118,7 +118,7 @@ class ActivityController extends Controller
 
 
         return redirect()->route('activity.index')
-            ->with('success', 'Activity update successfully');
+            ->with('success', 'Activity updated successfully');
     }
 
     public function destroy($id){
@@ -131,7 +131,7 @@ class ActivityController extends Controller
         }
 
         return redirect()->route('activity.index')
-            ->with('success', 'Activity delete successfully');
+            ->with('success', 'Activity deleted successfully');
     }
 
     public function getaddress(Request $request)

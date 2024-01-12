@@ -26,7 +26,7 @@ class WorkController extends Controller
         $work->createdBy =  $userLoginId;
         $work->save();
 
-        return redirect()->route('work.index')->with("success", "Work create successfully");
+        return redirect()->route('work.index')->with("success", "Work created successfully");
     }
 
     public function show($id){
@@ -47,13 +47,13 @@ class WorkController extends Controller
         $work->updatedBy =  $userLoginId;
         $work->update();
 
-        return redirect()->route('work.index')->with("success", "Work update successfully");
+        return redirect()->route('work.index')->with("success", "Work updated successfully");
     }
 
     public function destroy($id){
         $work = Work::Find($id);
         $work->delete();
 
-        return redirect()->route('work.index')->with("success", "Work delete successfully");
+        return redirect()->route('work.index')->with("success", "Work deleted successfully");
     }
 }
