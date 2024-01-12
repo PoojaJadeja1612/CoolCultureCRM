@@ -26,7 +26,7 @@ class TechnicianReportController extends Controller
                 ->leftjoin('technician_master', 'activity_master.technician', '=', 'technician_master.id')
                 ->leftjoin('customers', 'activity_master.name', '=', 'customers.id')
                 ->where('activity_master.technician', $name)
-                ->where('activity_master.created_at', 'LIKE', '%' . $date . '%')
+                ->where('activity_master.date', 'LIKE', '%' . $date . '%')
                 ->where('activity_master.status', $status)
                 ->get();
         } elseif ($name != null && $date != null && $status == null) {
@@ -34,7 +34,7 @@ class TechnicianReportController extends Controller
                 ->leftjoin('technician_master', 'activity_master.technician', '=', 'technician_master.id')
                 ->leftjoin('customers', 'activity_master.name', '=', 'customers.id')
                 ->where('activity_master.technician', $name)
-                ->where('activity_master.created_at', 'LIKE', '%' . $date . '%')
+                ->where('activity_master.date', 'LIKE', '%' . $date . '%')
                 ->get();
         } elseif ($name != null && $date == null && $status == null) {
             $data = Activity::select('activity_master.*', 'technician_master.technician_name', 'customers.name')

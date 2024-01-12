@@ -104,33 +104,55 @@
                 rules: {
                     name: {
                         required: true,
+                        maxlength: 50,
                     },
                     email: {
                         required: true,
                         email: true,
-
+                        maxlength: 100,
                     },
-                    // number: {
-                    //     required: true,
-                    // },
-                    roles: {
+                    address1: {
                         required: true,
+                        maxlength: 100,
+                    },
+                    address2: {
+                        maxlength: 100,
+                    },
+                    city: {
+                        maxlength: 100,
+                    },
+                    state: {
+                        maxlength: 100,
+                    },
+                    contry: {
+                        maxlength: 100,
                     },
                 },
                 messages: {
                     name: {
                         required: "Please enter name  ",
+                        maxlength: "Name cannot exceed 50 characters",
                     },
                     email: {
                         required: "Please enter email  ",
-                        email: "Please enter valid email"
-
+                        email: "Please enter valid email",
+                        maxlength: "Email cannot exceed 100 characters",
                     },
-                    // number: {
-                    //     required: "Please enter number  ",
-                    // },
-                    roles: {
-                        required: "Please select role ",
+                    address1: {
+                        required: "Please enter Address Line 1  ",
+                        maxlength: "Address Line 1 cannot exceed 100 characters",
+                    },
+                    address2: {
+                        maxlength: "Address Line 2 cannot exceed 100 characters",
+                    },
+                    city: {
+                        maxlength: "City cannot exceed 100 characters",
+                    },
+                    state: {
+                        maxlength: "City cannot exceed 100 characters",
+                    },
+                    contry: {
+                        maxlength: "City cannot exceed 100 characters",
                     },
                 },
                 submitHandler: function(form) {

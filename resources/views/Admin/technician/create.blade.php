@@ -95,19 +95,51 @@
                 rules: {
                     technician_name: {
                         required: true,
+                        maxlength: 50,
+                    },
+                    technician_email: {
+                        maxlength: 100,
                     },
                     technician_address1: {
                         required: true,
-
+                        maxlength: 100,
+                    },
+                    technician_address2: {
+                        maxlength: 100,
+                    },
+                    technician_city: {
+                        maxlength: 100,
+                    },
+                    technician_state: {
+                        maxlength: 100,
+                    },
+                    technician_contry: {
+                        maxlength: 100,
                     },
                 },
                 messages: {
                     technician_name: {
                         required: "Please enter name  ",
+                        maxlength: "Name cannot exceed 50 characters",
+                    },
+                    technician_email: {
+                        maxlength: "Email cannot exceed 100 characters",
                     },
                     technician_address1: {
                         required: "Please enter Address1  ",
-
+                        maxlength: "Address Line 1 cannot exceed 100 characters",
+                    },
+                    technician_address2: {
+                        maxlength: "Address Line 2 cannot exceed 100 characters",
+                    },
+                    technician_city: {
+                        maxlength: "City cannot exceed 100 characters",
+                    },
+                    technician_state: {
+                        maxlength: "City cannot exceed 100 characters",
+                    },
+                    technician_contry: {
+                        maxlength: "City cannot exceed 100 characters",
                     },
                 },
                 submitHandler: function(form) {

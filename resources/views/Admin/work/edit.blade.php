@@ -49,11 +49,13 @@
                 rules: {
                     name: {
                         required: true,
+                        maxlength: 50,
                     },
                 },
                 messages: {
                     name: {
                         required: "Please enter name  ",
+                        maxlength: "Name cannot exceed 50 characters",
                     },
                 },
                 submitHandler: function(form) {
