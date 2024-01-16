@@ -201,8 +201,8 @@
             <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
                 <div class="brand flex-column-auto" id="kt_brand">
                     <a href="{{ route('Dashboard') }}" class="brand-logo">
-                        <img alt="Logo" src="{{ asset('Logo/' . $setting->companyLogo) }}" width="90"
-                            height="40" />
+                        <img alt="Logo" src="{{ asset('Logo/' . $setting->companyLogo) }}" width="120"
+                            height="50" />
                     </a>
                     <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
                         <span class="svg-icon svg-icon svg-icon-xl">
