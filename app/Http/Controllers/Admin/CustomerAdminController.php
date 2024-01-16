@@ -28,7 +28,7 @@ class CustomerAdminController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Customer::where('companyId', Auth::user()->companyId)->orderby('id', 'DESC')->get();
+        $data = Customer::orderby('id', 'DESC')->get();
         return view('Admin.customer.index', compact('data'));
     }
 
