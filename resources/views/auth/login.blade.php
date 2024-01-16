@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Login Page | {{ $setting->companyName }}</title>
+    <title>Login Page | Cool Culture</title>
     <meta name="description" content="Login page example" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="canonical" href="https://keenthemes.com/metronic" />
@@ -16,7 +16,7 @@
     <link href="{{ asset('assets/css/themes/layout/header/menu/light.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/themes/layout/brand/dark.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="{{ asset('Logo/' . $setting->companyFavicon) }}" />
+    <link rel="shortcut icon" href="{{ asset('Logo/CC.png') }}" />
     <style>
         .btn-dark {
             background-color: {{ $setting->primaryColor }} !important;
@@ -62,7 +62,8 @@
             <div class="login-aside order-2 order-lg-1 d-flex flex-row-auto position-relative overflow-hidden">
                 <div class="d-flex flex-column-fluid flex-column justify-content-between py-4 px-7 py-lg-6 px-lg-35">
                     <a class="text-center pt-2">
-                        <img src="{{ asset('Logo/' . $setting->companyLogo) }}" class="max-h-75px" alt="" />
+                        {{-- {{ dd($setting->companyLogo); }} --}}
+                        <img src="{{ asset('Logo/CC- LOGO.png') }}" class="max-h-75px" alt="" />
                     </a>
                     <div class="d-flex flex-column-fluid flex-column flex-center">
                         <div class="login-form login-signin py-11">
