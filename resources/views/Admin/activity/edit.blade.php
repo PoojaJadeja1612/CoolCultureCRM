@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label>Technician Name</label>
                     <select id="technician" name="technician" class="form-control technician">
                         <option value="" selected disabled>Select Technician</option>
@@ -44,7 +44,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label>Date</label>
                     {!! Form::date('date', null, [
                         'placeholder' => 'date',
@@ -52,12 +52,12 @@
                         'max' => now()->format('Y-m-d'),
                     ]) !!}
                 </div>
-                <div class="form-group col-md-4">
+                {{-- <div class="form-group col-md-4">
                     <label>Status</label>
                     {!! Form::select('status', ['1' => 'Active', '0' => 'InActive'], null, [
                         'class' => 'form-control',
                     ]) !!}
-                </div>
+                </div> --}}
             </div>
             <div class="row">
                 <div class="form-group col-md-5">
@@ -73,14 +73,14 @@
                     <label>Quantity</label>
                     <input type="text" name="quantity[0]" placeholder="Quantity" class="form-control" value="{{ $activityWork[0]->quantity }}">
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-4">
                     <label>Remark</label>
                     <input type="text" name="remark[0]" placeholder="Remark" class="form-control" value="{{ $activityWork[0]->remark }}">
                 </div>
-                {{-- <div class="form-group col-md-1">
+                <div class="form-group col-md-1">
                     <label></label>
                     <button type="addfield" class="btn btn-success form-control mt-2 addfield">+</button>
-                </div> --}}
+                </div>
             </div>
             <div class="appendfield">
 

@@ -44,7 +44,7 @@ class ActivityController extends Controller
         $activity->Address = $request->get('Address');
         $activity->technician = $request->get('technician');
         $activity->date = $request->get('date');
-        $activity->status = $request->get('status');
+        // $activity->status = $request->get('status');
         $activity->createdBy = $userLoginId;
         $activity->save();
 
@@ -87,7 +87,7 @@ class ActivityController extends Controller
         $activity->Address = $request->get('Address');
         $activity->technician = $request->get('technician');
         $activity->date = $request->get('date');
-        $activity->status = $request->get('status');
+        // $activity->status = $request->get('status');
         $activity->updatedBy = $userLoginId;
         $activity->save();
 
@@ -96,16 +96,20 @@ class ActivityController extends Controller
         $quantity = $request->get('quantity');
 
         $activityWork = ActivityWorkDetails::where('activity_id', $id)->get();
+        foreach ($activityWork as $index => $aw) {
+            $aw->activity_id = $activity->id;
+            $aw->delete();
+        }
 
-        if ($activityWork->count() > 0) {
-            foreach ($activityWork as $index => $aw) {
-                $aw->activity_id = $activity->id;
-                $aw->work = $work[$index];
-                $aw->remark = $remark[$index];
-                $aw->quantity = $quantity[$index];
-                $aw->update();
-            }
-        } else {
+        // if ($activityWork->count() > 0) {
+        //     foreach ($activityWork as $index => $aw) {
+        //         $aw->activity_id = $activity->id;
+        //         $aw->work = $work[$index];
+        //         $aw->remark = $remark[$index];
+        //         $aw->quantity = $quantity[$index];
+        //         $aw->update();
+        //     }
+        // } else {
             for ($i = 0; $i < count($work); $i++) {
                 $newActivityWork = new ActivityWorkDetails;
                 $newActivityWork->activity_id = $activity->id;
@@ -114,7 +118,7 @@ class ActivityController extends Controller
                 $newActivityWork->quantity = $quantity[$i];
                 $newActivityWork->save();
             }
-        }
+        // }
 
 
         return redirect()->route('activity.index')

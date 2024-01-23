@@ -20,7 +20,7 @@
                     {!! Form::text('technician_name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
                 </div>
                 <div class="form-group col-md-4">
-                    <label>Email<span class="text-danger">*</span></label>
+                    <label>Email</label>
                     {!! Form::text('technician_email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
                 </div>
                 <div class="form-group col-md-4">
@@ -35,7 +35,7 @@
             </div>
             <div class="row"> 
                 <div class="form-group col-md-4">
-                    <label>Address Line 1<span class="text-danger">*</span></label>
+                    <label>Address Line 1</label>
                     {!! Form::text('technician_address1', null, ['placeholder' => 'Address Line 1', 'class' => 'form-control']) !!}
                 </div>
                 <div class="form-group col-md-4">
@@ -69,7 +69,7 @@
 
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label>Status<span class="text-danger">*</span></label>
+                    <label>Status</label>
                     {!! Form::select('technician_status', ['1' => 'Active', '0' => 'InActive'], null, [
                         'class' => 'form-control',
                     ]) !!}
@@ -110,7 +110,6 @@
                         maxlength: 100,
                     },
                     technician_address1: {
-                        required: true,
                         maxlength: 100,
                     },
                     technician_address2: {
@@ -135,7 +134,6 @@
                         maxlength: "Email cannot exceed 100 characters",
                     },
                     technician_address1: {
-                        required: "Please enter Address 1  ",
                         maxlength: "Address Line 1 cannot exceed 100 characters",
                     },
                     technician_address2: {

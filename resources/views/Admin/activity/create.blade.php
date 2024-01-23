@@ -16,13 +16,13 @@
         <div class="card-body">
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="customer_name">Customer Name</label>
+                    <label for="customer_name">Customer Name<span class="text-danger">*</span></label>
                     <select id="name" name="name" class="form-control customername">
                         <option value="" selected disabled>Select Customer</option>
+                        <option value="__create_customer__">Create New Customer</option>
                         @foreach ($customer as $customers)
                             <option value="{{ $customers->id }}">{{ $customers->name }}</option>
                         @endforeach
-                        <option value="__create_customer__">Create New Customer</option>
                     </select>
                 </div>
                 <div class="form-group col-md-8">
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label>Technician Name</label>
                     <select id="technician" name="technician" class="form-control technician">
                         <option value="" selected disabled>Select Technician</option>
@@ -40,7 +40,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label>Date</label>
                     {!! Form::date('date', null, [
                         'placeholder' => 'date',
@@ -48,12 +48,12 @@
                         'max' => now()->format('Y-m-d'),
                     ]) !!}
                 </div>
-                <div class="form-group col-md-4">
+                {{-- <div class="form-group col-md-4">
                     <label>Status</label>
                     {!! Form::select('status', ['1' => 'Active', '0' => 'InActive'], null, [
                         'class' => 'form-control',
                     ]) !!}
-                </div>
+                </div> --}}
             </div>
             <div class="row">
                 <div class="form-group col-md-5">
@@ -116,7 +116,7 @@
                         </div>
                         <div class="row"> 
                             <div class="form-group col-md-4">
-                                <label>Address Line 1<span class="text-danger">*</span></label>
+                                <label>Address Line 1</label>
                                 <input type="text" name="address1" placeholder="Address Line 1" class="form-control">
                             </div>
                             <div class="form-group col-md-4">
@@ -174,6 +174,27 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        $('#user').validate({
+            errorClass: 'is-invalid',
+            rules: {
+                name: {
+                    required: true,
+                },
+            },
+            messages: {
+                name: {
+                    required: "Please enter name  ",
+                },
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        })
+    });
+</script>
+
     <script>
         $(document).ready(function() {
             $('#createcustomer').validate({
@@ -182,18 +203,10 @@
                     name: {
                         required: true,
                     },
-                    address1: {
-                        required: true,
-
-                    },
                 },
                 messages: {
                     name: {
                         required: "Please enter name  ",
-                    },
-                    address1: {
-                        required: "Please enter Address1  ",
-
                     },
                 },
                 submitHandler: function(form) {
@@ -215,10 +228,8 @@
                     customername: customername
                 },
                 success: function(response) {
-                    console.log(response);
-                    $('.address').val(response.address1 + ', ' + response.address2 + ', ' + response
-                        .city + ', ' + response.state + ', ' + response.contry + ', ' + response
-                        .pincode);
+                    // console.log(response);
+                    $('.address').val(response.address1);
                 },
                 error: function(error) {
                     console.error("Error:", error);
@@ -283,12 +294,42 @@
     <script>
         $(document).ready(function() {
             $('.customername').select2({
-                width: '100%', // Adjust the width as needed
+                width: '100%',
                 placeholder: 'Search for a customer',
-                allowClear: true // Option to clear the selected value
+                allowClear: true,
+                tags: true,
+                createTag: function(params) {
+                    return {
+                        id: 'new_' + params.term,
+                        text: 'Create New Customer ',
+                        newOption: true
+                    };
+                }
             });
+    
+            $('.customername').on('select2:select', function(e) {
+                var selectedOption = e.params.data;
+                
+                if (selectedOption.newOption) {
+                    // The user selected "Create New Customer"
+                    var newCustomerName = selectedOption.text.replace('Create New Customer: ', '');
+    
+                    // Add your logic to create a new customer here
+                    createNewCustomer(newCustomerName);
+                }
+            });
+            var createCustomerModal = $('#createCustomerModal');
+            function createNewCustomer(customerName) {
+                // Replace this alert with your actual logic for creating a new customer
+                // alert('Creating new customer: ' + customerName);
+                createCustomerModal.modal('show');
+    
+                // You can add your AJAX request or any other logic here to create the new customer
+            }
         });
     </script>
+    
+    
 
     <script>
         $(document).ready(function() {

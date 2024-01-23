@@ -35,7 +35,7 @@
             </div>
             <div class="row"> 
                 <div class="form-group col-md-4">
-                    <label>Address Line 1<span class="text-danger">*</span></label>
+                    <label>Address Line 1</label>
                     {!! Form::text('technician_address1', null, ['placeholder' => 'Address Line 1', 'class' => 'form-control']) !!}
                 </div>
                 <div class="form-group col-md-4">
@@ -101,7 +101,6 @@
                         maxlength: 100,
                     },
                     technician_address1: {
-                        required: true,
                         maxlength: 100,
                     },
                     technician_address2: {
@@ -126,7 +125,6 @@
                         maxlength: "Email cannot exceed 100 characters",
                     },
                     technician_address1: {
-                        required: "Please enter Address1  ",
                         maxlength: "Address Line 1 cannot exceed 100 characters",
                     },
                     technician_address2: {

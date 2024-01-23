@@ -28,20 +28,20 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label>Date</label>
-                                    {!! Form::date('date', null, [
+                                    <label>From Date</label>
+                                    {!! Form::date('fromdate', null, [
                                         'placeholder' => 'date',
                                         'class' => 'form-control',
                                         'max' => now()->format('Y-m-d'),
                                     ]) !!}
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label>Status</label>
-                                    <select name="status" id="status" class="form-control">
-                                        <option>Select Status</option>
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactive</option>
-                                    </select>
+                                    <label>To Date</label>
+                                    {!! Form::date('todate', null, [
+                                        'placeholder' => 'date',
+                                        'class' => 'form-control',
+                                        'max' => now()->format('Y-m-d'),
+                                    ]) !!}
                                 </div>
                             </div>
                         </div>
