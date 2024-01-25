@@ -20,7 +20,7 @@
                     {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
                 </div>
                 <div class="form-group col-md-4">
-                    <label>Email<span class="text-danger">*</span></label>
+                    <label>Email</label>
                     {!! Form::text('email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
                 </div>
                 <div class="form-group col-md-4">
@@ -66,15 +66,6 @@
                     ]) !!}
                 </div>
             </div>
-
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label>Status<span class="text-danger">*</span></label>
-                    {!! Form::select('userStatus', ['1' => 'Active', '0' => 'InActive'], null, [
-                        'class' => 'form-control',
-                    ]) !!}
-                </div>
-            </div>
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary mr-2">Update</button>
@@ -107,7 +98,6 @@
                         maxlength: 50,
                     },
                     email: {
-                        required: true,
                         email: true,
                         maxlength: 100,
                     },
@@ -134,7 +124,6 @@
                         maxlength: "Name cannot exceed 50 characters",
                     },
                     email: {
-                        required: "Please enter email  ",
                         email: "Please enter valid email",
                         maxlength: "Email cannot exceed 100 characters",
                     },

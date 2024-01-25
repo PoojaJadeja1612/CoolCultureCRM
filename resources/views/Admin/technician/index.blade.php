@@ -20,10 +20,7 @@
                 <thead>
                     <tr>
                         <th>Sr.no</th>
-                        {{-- <th>ID</th> --}}
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -31,18 +28,7 @@
                     @foreach ($technician as $key => $tech)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            {{-- <td>{{ $tech->id }}</td> --}}
                             <td>{{ $tech->technician_name }}</td>
-                            <td>{{ $tech->technician_email }}</td>
-                            <td>
-                                @if ($tech->technician_status == '1')
-                                    Active
-                                @elseif ($tech->technician_status == '0')
-                                    Inactive
-                                @else
-                                    NULL
-                                @endif
-                            </td>
                             <td>
                                 <a class="btn btn-sm btn-clean btn-icon" href="{{ route('technician.show', $tech->id) }}"
                                     title="Show"><i class="la la-eye"></i></a>

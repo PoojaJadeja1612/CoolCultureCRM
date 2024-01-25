@@ -66,15 +66,6 @@
                     ]) !!}
                 </div>
             </div>
-
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label>Status</label>
-                    {!! Form::select('technician_status', ['1' => 'Active', '0' => 'InActive'], null, [
-                        'class' => 'form-control',
-                    ]) !!}
-                </div>
-            </div>
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary mr-2">Update</button>

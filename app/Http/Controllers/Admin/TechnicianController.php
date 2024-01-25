@@ -32,7 +32,6 @@ class TechnicianController extends Controller
         $technician->technician_city = $request->technician_city;
         $technician->technician_state = $request->technician_state;
         $technician->technician_contry = $request->technician_contry;
-        $technician->technician_status = "1";
         $technician->createdBy = $userLoginId;
         $technician->save();
 
@@ -62,7 +61,6 @@ class TechnicianController extends Controller
         $technician->technician_city = $request->technician_city;
         $technician->technician_state = $request->technician_state;
         $technician->technician_contry = $request->technician_contry;
-        $technician->technician_status = $request->technician_status;
         $technician->updatedBy = $userLoginId;
         $technician->update();
 

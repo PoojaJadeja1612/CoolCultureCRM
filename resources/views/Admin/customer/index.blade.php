@@ -20,10 +20,7 @@
                 <thead>
                     <tr>
                         <th>Sr.no</th>
-                        {{-- <th>ID</th> --}}
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -31,18 +28,7 @@
                     @foreach ($data as $key => $user)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            {{-- <td>{{ $user->id }}</td> --}}
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>
-                                @if ($user->userStatus == '1')
-                                Active
-                                @elseif ($user->userStatus == '0')
-                                    Inactive
-                                @else
-                                    NULL
-                                @endif
-                            </td>
                             <td>
                                 <a class="btn btn-sm btn-clean btn-icon" href="{{ route('customer.show', $user->id) }}"
                                     title="Show"><i class="la la-eye"></i></a>
@@ -51,11 +37,6 @@
                                     <a class="btn btn-sm btn-clean btn-icon" href="{{ route('customer.edit', $user->id) }}"
                                         title="Edit"><i class="la la-edit"></i></a>
                                 @endcan
-                                {{-- @can('customer-password-reset')
-                                    <a class="btn btn-sm btn-clean btn-icon" data-bs-toggle="modal"
-                                        data-bs-target="#kt_modal_new_cardd-{{ $user->id }}" title="Send password"><button
-                                            class="btn btn-sm btn-clean btn-icon"><i class="la la-unlock"></i></button></a>
-                                @endcan --}}
                                 @can('user-delete')
                                     <a class="btn btn-sm btn-clean btn-icon" data-bs-toggle="modal"
                                         data-bs-target="#kt_modal_new_card-{{ $user->id }}" title="Delete"><button

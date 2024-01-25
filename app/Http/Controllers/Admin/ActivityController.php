@@ -29,8 +29,8 @@ class ActivityController extends Controller
     public function create()
     {
         $work = Work::orderby('name', 'ASC')->get();
-        $customer = Customer::where('userStatus', '1')->orderby('name', 'ASC')->get();
-        $technician = Technician::where('technician_status', '1')->orderby('technician_name', 'ASC')->get();
+        $customer = Customer::orderby('name', 'ASC')->get();
+        $technician = Technician::orderby('technician_name', 'ASC')->get();
         return view('Admin.activity.create')->with('customer', $customer)->with('technician', $technician)->with('work', $work);
     }
 
@@ -44,7 +44,6 @@ class ActivityController extends Controller
         $activity->Address = $request->get('Address');
         $activity->technician = $request->get('technician');
         $activity->date = $request->get('date');
-        // $activity->status = $request->get('status');
         $activity->createdBy = $userLoginId;
         $activity->save();
 
@@ -69,8 +68,8 @@ class ActivityController extends Controller
     public function edit($id)
     {
         $work = Work::all();
-        $customer = Customer::where('userStatus', '1')->get();
-        $technician = Technician::where('technician_status', '1')->get();
+        $customer = Customer::all();
+        $technician = Technician::all();
         $activity = Activity::Find($id);
         $activityWork = ActivityWorkDetails::where('activity_id', $id)->get();
         // dd($activityWork);
@@ -87,7 +86,6 @@ class ActivityController extends Controller
         $activity->Address = $request->get('Address');
         $activity->technician = $request->get('technician');
         $activity->date = $request->get('date');
-        // $activity->status = $request->get('status');
         $activity->updatedBy = $userLoginId;
         $activity->save();
 

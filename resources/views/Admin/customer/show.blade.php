@@ -36,47 +36,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Address1:</strong>
-                        {{ $user->address1 }}, {{ $user->address2 }}, {{ $user->city }}, {{ $user->state }}, {{ $user->contry }}, {{ $user->pincode }}.
-                    </div>
-                </div>
-                {{-- <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Address2:</strong>
-                        {{ $user->address2 }}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Pincode:</strong>
-                        {{ $user->pincode }}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>City:</strong>
-                        {{ $user->city }}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>State:</strong>
-                        {{ $user->state }}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Contry:</strong>
-                        {{ $user->contry }}
-                    </div>
-                </div> --}}
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Status:</strong>
-                        @if ($user->userStatus == '0')
-                            <label class="">Inactive</label>
-                        @else
-                            <label class="">Active</label>
-                        @endif
+                        {{ $user->address1 }}
                     </div>
                 </div>
             </div>

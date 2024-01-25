@@ -53,18 +53,11 @@ class CustomerAdminController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'address1' => 'required',
-            // 'number' => 'required|unique:users',
-            // 'userStatus' => 'required',
         ]);
 
         $input = $request->all();
         $bytes = openssl_random_pseudo_bytes(4);
         $pwd = bin2hex($bytes);
-        if ($request->password) {
-            $input['userStatus'] = "1";
-        } else {
-            $input['userStatus'] = "2";
-        }
         $input['password'] = Hash::make($pwd);
         $input['name'] = ucfirst($input['name']);
         $input['createBy'] = Auth::user()->id;
@@ -116,8 +109,7 @@ class CustomerAdminController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:customers,email,' . $id,
-            'userStatus' => 'required',
+            // 'email' => 'unique:customers,email,' . $id,
         ]);
 
         $input = $request->all();
@@ -162,7 +154,6 @@ class CustomerAdminController extends Controller
 
         $customer = Customer::find($id);
         $customer->password = Hash::make($pwd);
-        $customer->userStatus = "1";
         $customer->update();
 
         $userId = $customer->email;
@@ -185,7 +176,6 @@ class CustomerAdminController extends Controller
         $createActivityCustomer->state = $request->get('state');
         $createActivityCustomer->contry = $request->get('contry');
         $createActivityCustomer->pincode = $request->get('pincode');
-        $createActivityCustomer->userStatus = '1';
         $createActivityCustomer->createBy = Auth::user()->id;
         $createActivityCustomer->save();
 

@@ -39,16 +39,6 @@
                         {{ $technician->technician_address1 }}, {{ $technician->technician_address2 }}, {{ $technician->technician_city }}, {{ $technician->technician_state }}, {{ $technician->technician_contry }}, {{ $technician->technician_pincode }} .
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Status:</strong>
-                        @if ($technician->technician_status == '0')
-                            <label class="">Inactive</label>
-                        @else
-                            <label class="">Active</label>
-                        @endif
-                    </div>
-                </div>
             </div>
         </div>
     </div>
