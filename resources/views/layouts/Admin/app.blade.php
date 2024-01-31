@@ -539,6 +539,22 @@
                                                         <span class="menu-text">Technicians Report</span>
                                                     </a>
                                                 </li>
+                                                <li class="menu-item" aria-haspopup="true">
+                                                    <a href="{{ route('customerReports') }}" class="menu-link">
+                                                        <i class="menu-bullet ">
+                                                            <span></span>
+                                                        </i>
+                                                        <span class="menu-text">Customer Report</span>
+                                                    </a>
+                                                </li>
+                                                <li class="menu-item" aria-haspopup="true">
+                                                    <a href="{{ route('workReports') }}" class="menu-link">
+                                                        <i class="menu-bullet ">
+                                                            <span></span>
+                                                        </i>
+                                                        <span class="menu-text">Work Report</span>
+                                                    </a>
+                                                </li>
                                             @if (Auth::user()->hasPermissionTo('permission-list'))
                                                 <li class="menu-item" aria-haspopup="true">
                                                     <a href="{{ route('permission.index') }}" class="menu-link">

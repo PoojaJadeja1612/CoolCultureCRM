@@ -1,25 +1,25 @@
 @extends('layouts.Admin.app')
-@section('page', 'Technician Reports')
+@section('page', 'Work Reports')
 @section('content')
     <div class="card card-custom">
         <div class="card-header py-3">
             <div class="card-title">
-                <form id="searchForm" action="{{ route('technicianSearch') }}" method="get">
+                <form id="searchForm" action="{{ route('workSearch') }}" method="get">
                     @csrf
-                    <div class="card card-custom" style="width: 167%;">
+                    <div class="card card-custom" style="width: 145%;">
                         <div class="card-header py-3">
                             <div class="card-title">
-                                <h3 class="card-label font-weight-bolder text-dark">Technician Report</h3>
+                                <h3 class="card-label font-weight-bolder text-dark">Work Report</h3>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-4">
-                                    <label>Technician Name</label>
+                                    <label>Work Name</label>
                                     <select id="name" name="name" class="form-control">
-                                        <option value="" selected disabled>Select Technician</option>
-                                        @foreach ($techActivity as $tech)
-                                            <option value="{{ $tech->id }}">{{ $tech->technician_name }}</option>
+                                        <option value="" selected disabled>Select Work</option>
+                                        @foreach ($work as $works)
+                                            <option value="{{ $works->id }}">{{ $works->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -53,8 +53,9 @@
                 <thead>
                     <tr>
                         <th>Sr.no</th>
-                        <th>Technician Name</th>
+                        <th>Work</th>                        
                         <th>Customer Name</th>
+                        <th>Technician Name</th>  
                         <th>Address</th>
                     </tr>
                 </thead>
@@ -62,9 +63,10 @@
                     @foreach ($data as $key => $reports)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $reports->technician_name }}</td>
-                            <td>{{ $reports->name }}</td>
-                            <td>{{ $reports->Address }}</td>
+                            <td>{{ $reports->work_name }}</td>
+                            <td>{{ $reports->technician_name }}</td> 
+                            <td>{{ $reports->customer_name }}</td>                                                       
+                            <td>{{ $reports->address1 }}</td>
                         </tr>
                     @endforeach
                 </tbody>
