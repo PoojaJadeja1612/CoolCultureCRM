@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use App\Rules\CustomerName;
+
 
 class CustomerAdminController extends Controller
 {
@@ -50,8 +52,12 @@ class CustomerAdminController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
+        // $this->validate($request, [
+        //     'name' => 'required',
+        //     'address1' => 'required',
+        // ]);
+        $request->validate([
+            'name' => ['required', 'max:50', new CustomerName],
             'address1' => 'required',
         ]);
 

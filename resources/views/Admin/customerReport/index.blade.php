@@ -43,19 +43,21 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" id="searchButton" class="btn btn-primary mr-2">Search</button>
+                            <button type="button" id="exportButton" class="btn btn-secondary mr-2">Download</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
+            <table class="table table-separate table-head-custom table-checkable" id="example">
                 <thead>
                     <tr>
                         <th>Sr.no</th>
                         <th>Customer Name</th>
                         <th>Technician Name</th>  
                         <th>Address</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -65,6 +67,7 @@
                             <td>{{ $reports->name }}</td>
                             <td>{{ $reports->technician_name }}</td>                            
                             <td>{{ $reports->Address }}</td>
+                            
                         </tr>
                     @endforeach
                 </tbody>
@@ -80,4 +83,66 @@
             });
         });
     </script>
+     <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+     <script>
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": -1 } // Disable sorting for the last column (Actions)
+                ],
+                // Your other DataTable options go here
+                "order": [[ 1, "asc" ]] // Example: Sorting by the second column in ascending order
+            });
+    
+            // Export to Excel function
+            $('#exportButton').on('click', function() {
+                var filteredData = table.rows({ search: 'applied' }).data().toArray();
+                var headers = ['SR NO', 'Customer Name', 'Technician Name', 'address']; // Define selected headers
+                exportToExcel(filteredData, headers);
+            });
+    
+            function exportToExcel(data, headers) {
+                // Create a CSV content string with headers
+                var csvContent = headers.map(function(header) {
+                    return `"${header}"`;
+                }).join(",") + "\r\n";
+    
+                // Convert data to CSV format
+                data.forEach(function(rowArray) {
+                    var rowData = rowArray.map(function(value) {
+                        // Trim each value to remove extra spaces and replace multiple spaces with a single space
+                        return value.trim().replace(/\s+/g, ' ');
+                    });
+    
+                    for (var i = 0; i < rowData.length; i++) {
+                        // Check if the value contains a comma
+                        if (rowData[i].includes(',')) {
+                            // Enclose the value within double quotes and escape existing double quotes
+                            rowData[i] = '"' + rowData[i].replace(/"/g, '""') + '"';
+                        }
+                    }
+    
+                    var row = rowData.join(",");
+                    csvContent += row + "\r\n";
+                });
+    
+                // Create a Blob object
+                var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
+    
+                // Create a temporary anchor element
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.setAttribute('download', 'Customer_Reports.csv');
+    
+                // Append the anchor element to the body
+                document.body.appendChild(link);
+    
+                // Trigger the click event to initiate download
+                link.click();
+            }
+        });
+    </script>
+
+
 @endsection

@@ -36,8 +36,8 @@
                             <td>{{ $activity->Address }}</td>
                             <td>{{ $activity->date }}</td>
                             <td>
-                                {{-- <a class="btn btn-sm btn-clean btn-icon" href="{{ route('activity.show', $activity->id) }}"
-                                    title="Show"><i class="la la-eye"></i></a> --}}
+                                <a class="btn btn-sm btn-clean btn-icon" href="{{ route('activity.show', $activity->id) }}"
+                                    title="Show"><i class="la la-eye"></i></a>
 
                                 {{-- @can('user-edit') --}}
                                     <a class="btn btn-sm btn-clean btn-icon" href="{{ route('activity.edit', $activity->id) }}"

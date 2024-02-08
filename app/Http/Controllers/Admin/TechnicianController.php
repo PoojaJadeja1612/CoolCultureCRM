@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Technician;
+use App\Rules\TechnicianName;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,10 @@ class TechnicianController extends Controller
 
     public function store(Request $request)
     {
+
+        $request->validate([
+            'technician_name' => ['required', 'max:50', new TechnicianName],
+        ]);
         $user = Auth::user();
         $userLoginId = $user->id;
         $technician = new Technician;

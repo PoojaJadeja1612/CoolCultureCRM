@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Work;
+use App\Rules\WorkName;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +20,10 @@ class WorkController extends Controller
     }
 
     public function store(Request $request){
+
+        $request->validate([
+            'name' => ['required', 'max:50', new WorkName],
+        ]);
         $user = Auth::user();
         $userLoginId = $user->id;
         $work = new Work;
