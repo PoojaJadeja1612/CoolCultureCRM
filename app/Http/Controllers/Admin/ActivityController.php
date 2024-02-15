@@ -21,7 +21,7 @@ class ActivityController extends Controller
         $activitys = DB::table('activity_master')
             ->select('activity_master.*', 'technician_master.technician_name', 'customers.name')
             ->leftJoin('technician_master', 'activity_master.technician', '=', 'technician_master.id')
-            ->leftJoin('customers', 'activity_master.name', '=', 'customers.id')->where('activity_master.deleted_at', NULL)->orderby('activity_master.date', 'DESC')->get();
+            ->leftJoin('customers', 'activity_master.name', '=', 'customers.id')->where('activity_master.deleted_at', NULL)->orderby('activity_master.date', 'ASC')->get();
         // dd($activitys);
         return view('Admin.activity.index')->with('activitys', $activitys);
     }
