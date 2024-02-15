@@ -35,7 +35,7 @@ class TechnicianReportController extends Controller
             //     ->where('activity_master.date', '>=', $fromdate)
             //     ->where('activity_master.date', '<=', $todate)
             //     ->get();
-            $data = Activity::select('activity_master.*', 'technician_master.technician_name', 'customers.name', 'activity_work_master.remark', 'work_master.name as work_name')
+            $data = Activity::select('activity_master.*', 'technician_master.technician_name', 'customers.name', 'activity_work_master.remark' , 'activity_work_master.quantity', 'work_master.name as work_name')
             ->leftJoin('activity_work_master', 'activity_master.id', '=', 'activity_work_master.activity_id')
             ->leftJoin('work_master', 'activity_work_master.work', '=', 'work_master.id')
             ->leftJoin('technician_master', 'activity_master.technician', '=', 'technician_master.id')

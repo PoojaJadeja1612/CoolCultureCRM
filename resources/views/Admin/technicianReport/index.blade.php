@@ -59,6 +59,7 @@
                         <th>Address</th>
                         <th>Work</th>
                         <th>Remark</th>
+                        <th>Quantity</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,6 +71,7 @@
                             <td>{{ $reports->Address }}</td>
                             <td>{{ $reports->work_name }}</td>
                             <td>{{ $reports->remark }}</td>
+                            <td>{{ $reports->quantity }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -111,7 +113,7 @@
        // Export to Excel function
        $('#exportButton').on('click', function() {
            var filteredData = table.rows({ search: 'applied' }).data().toArray();
-           var headers = ['Sr No', 'Technician Name', 'Customer Name', 'Address', 'Work', 'Remark']; // Define selected headers
+           var headers = ['Sr No', 'Technician Name', 'Customer Name', 'Address', 'Work', 'Remark', 'Quantity']; // Define selected headers
            exportToExcel(filteredData, headers);
        });
 

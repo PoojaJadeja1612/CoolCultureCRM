@@ -16,11 +16,11 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
+            <table class="table table-separate table-head-custom table-checkable" id="example_datatable">
                 <thead>
                     <tr>
                         {{-- <th>Sr.no</th> --}}
-                        <th>Date Sr.no</th>
+                        <th>Date</th>
                         <th>Technician</th>
                         <th>Customer Name</th>
                         <th>Address</th>
@@ -32,7 +32,7 @@
                     @foreach ($activitys as $key => $activity)
                         <tr>
                             {{-- <td>{{ $key + 1 }}</td> --}}
-                            <td>{{ $activity->date }}</td>
+                            <td>{{ date('d-m-Y', strtotime($activity->date)) }}</td>
                             <td>{{ $activity->technician_name }}</td>
                             <td>{{ $activity->name }}</td>
                             <td>{{ $activity->Address }}</td>
@@ -103,4 +103,18 @@
     </div>
 @endsection
 @section('script')
+<script>
+$(document).ready(function() {
+    $('#example_datatable').dataTable( {
+        "order": [],
+    "columnDefs": [ {
+      "targets"  : 'no-sort',
+      "orderable": false,
+    }]
+} );
+});
+
+
+
+</script>
 @endsection
