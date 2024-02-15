@@ -6,7 +6,7 @@
             <div class="card-title">
                 <form id="searchForm" action="{{ route('customerSearch') }}" method="get">
                     @csrf
-                    <div class="card card-custom" style="width: 129%;">
+                    <div class="card card-custom" style="width: 122%;">
                         <div class="card-header py-3">
                             <div class="card-title">
                                 <h3 class="card-label font-weight-bolder text-dark">Customer Report</h3>
@@ -16,7 +16,7 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label>Customer Name</label>
-                                    <select id="name" name="name" class="form-control">
+                                    <select id="name" name="name" class="form-control customer">
                                         <option value="" selected disabled>Select Customer</option>
                                         @foreach ($customers as $customer)
                                             <option value="{{ $customer->id }}">{{ $customer->name }}</option>
@@ -83,6 +83,15 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.customer').select2({
+                width: '100%', // Adjust the width as needed
+                placeholder: 'Search for a customer',
+                allowClear: true // Option to clear the selected value
+            });
+        });
+    </script>
      <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
      <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
      <script>
@@ -98,7 +107,7 @@
             // Export to Excel function
             $('#exportButton').on('click', function() {
                 var filteredData = table.rows({ search: 'applied' }).data().toArray();
-                var headers = ['SR NO', 'Customer Name', 'Technician Name', 'address']; // Define selected headers
+                var headers = ['Sr No', 'Customer Name', 'Technician Name', 'Address']; // Define selected headers
                 exportToExcel(filteredData, headers);
             });
     

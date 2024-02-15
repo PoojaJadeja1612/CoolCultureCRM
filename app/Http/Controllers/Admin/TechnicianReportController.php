@@ -27,13 +27,27 @@ class TechnicianReportController extends Controller
         $todate = Carbon::parse($todate)->endOfDay();
 
         if ($name != null && $todate != null && $fromdate != null) {
-            $data = Activity::select('activity_master.*', 'technician_master.technician_name', 'customers.name')
-                ->leftjoin('technician_master', 'activity_master.technician', '=', 'technician_master.id')
-                ->leftjoin('customers', 'activity_master.name', '=', 'customers.id')
-                ->where('activity_master.technician', $name)
-                ->where('activity_master.created_at', '>=', $fromdate)
-                ->where('activity_master.created_at', '<=', $todate)
-                ->get();
+            // $data = Activity::select('activity_master.*', 'technician_master.technician_name', 'customers.name', 'activity_work_master.remark')
+            //     ->leftjoin('activity_work_master.*', 'activity_master.id', '=', 'activity_work_master.activity_id')
+            //     ->leftjoin('technician_master', 'activity_master.technician', '=', 'technician_master.id')
+            //     ->leftjoin('customers', 'activity_master.name', '=', 'customers.id')
+            //     ->where('activity_master.technician', $name)
+            //     ->where('activity_master.date', '>=', $fromdate)
+            //     ->where('activity_master.date', '<=', $todate)
+            //     ->get();
+            $data = Activity::select('activity_master.*', 'technician_master.technician_name', 'customers.name', 'activity_work_master.remark', 'work_master.name as work_name')
+            ->leftJoin('activity_work_master', 'activity_master.id', '=', 'activity_work_master.activity_id')
+            ->leftJoin('work_master', 'activity_work_master.work', '=', 'work_master.id')
+            ->leftJoin('technician_master', 'activity_master.technician', '=', 'technician_master.id')
+            ->leftJoin('customers', 'activity_master.name', '=', 'customers.id')
+            ->where('activity_master.technician', $name)
+            ->where('activity_master.date', '>=', $fromdate)
+            ->where('activity_master.date', '<=', $todate)
+            ->whereNull('activity_master.deleted_at')
+            ->whereNull('activity_work_master.deleted_at')
+            ->get();
+
+
         } else {
             $data = array();
         }

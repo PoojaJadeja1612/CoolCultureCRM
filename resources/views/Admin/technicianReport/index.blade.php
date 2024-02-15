@@ -6,7 +6,7 @@
             <div class="card-title">
                 <form id="searchForm" action="{{ route('technicianSearch') }}" method="get">
                     @csrf
-                    <div class="card card-custom" style="width: 167%;">
+                    <div class="card card-custom" style="width: 120%;">
                         <div class="card-header py-3">
                             <div class="card-title">
                                 <h3 class="card-label font-weight-bolder text-dark">Technician Report</h3>
@@ -16,7 +16,7 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label>Technician Name</label>
-                                    <select id="name" name="name" class="form-control">
+                                    <select id="name" name="name" class="form-control technician">
                                         <option value="" selected disabled>Select Technician</option>
                                         @foreach ($techActivity as $tech)
                                             <option value="{{ $tech->id }}">{{ $tech->technician_name }}</option>
@@ -57,6 +57,8 @@
                         <th>Technician Name</th>
                         <th>Customer Name</th>
                         <th>Address</th>
+                        <th>Work</th>
+                        <th>Remark</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,6 +68,8 @@
                             <td>{{ $reports->technician_name }}</td>
                             <td>{{ $reports->name }}</td>
                             <td>{{ $reports->Address }}</td>
+                            <td>{{ $reports->work_name }}</td>
+                            <td>{{ $reports->remark }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -82,6 +86,16 @@
         });
     </script>
 
+<script>
+    $(document).ready(function() {
+        $('.technician').select2({
+            width: '100%', // Adjust the width as needed
+            placeholder: 'Search for a technician',
+            allowClear: true // Option to clear the selected value
+        });
+    });
+</script>
+
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
 <script>
@@ -97,7 +111,7 @@
        // Export to Excel function
        $('#exportButton').on('click', function() {
            var filteredData = table.rows({ search: 'applied' }).data().toArray();
-           var headers = ['SR NO', 'Technician Name', 'Customer Name', 'address']; // Define selected headers
+           var headers = ['Sr No', 'Technician Name', 'Customer Name', 'Address', 'Work', 'Remark']; // Define selected headers
            exportToExcel(filteredData, headers);
        });
 

@@ -31,8 +31,8 @@ class WorkReportController extends Controller
              ->leftjoin('customers', 'activity_master.name', '=', 'customers.id')
              ->leftjoin('work_master', 'activity_work_master.work', '=', 'work_master.id')
              ->where('activity_work_master.work', $name)
-             ->where('activity_work_master.created_at', '>=', $fromdate)
-             ->where('activity_work_master.created_at', '<=', $todate)
+             ->where('activity_master.date', '>=', $fromdate)
+             ->where('activity_master.date', '<=', $todate)
              ->get();
         } else {
             $data = array();

@@ -7,6 +7,7 @@ use App\Models\Work;
 use App\Rules\WorkName;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class WorkController extends Controller
 {
@@ -44,7 +45,17 @@ class WorkController extends Controller
         return view('Admin.work.edit')->with('work', $work);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
+        $rules = [
+            'name' => [
+                'required',
+                Rule::unique('work_master')->ignore($id),
+            ],
+        ];
+        
+        $this->validate($request, $rules);
+
         $user = Auth::user();
         $userLoginId = $user->id;
         $work = Work::Find($id);

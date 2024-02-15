@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use App\Rules\CustomerName;
-
+use Illuminate\Validation\Rule;
 
 class CustomerAdminController extends Controller
 {
@@ -52,10 +52,6 @@ class CustomerAdminController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => 'required',
-        //     'address1' => 'required',
-        // ]);
         $request->validate([
             'name' => ['required', 'max:50', new CustomerName],
             'address1' => 'required',
@@ -113,10 +109,14 @@ class CustomerAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            // 'email' => 'unique:customers,email,' . $id,
-        ]);
+        $rules = [
+            'name' => [
+                'required',
+                Rule::unique('customers')->ignore($id),
+            ],
+        ];
+
+        $this->validate($request, $rules);
 
         $input = $request->all();
         $user = Customer::find($id);

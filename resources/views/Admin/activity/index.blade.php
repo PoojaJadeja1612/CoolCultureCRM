@@ -19,22 +19,24 @@
             <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
                 <thead>
                     <tr>
-                        <th>Sr.no</th>
+                        {{-- <th>Sr.no</th> --}}
+                        <th>Date Sr.no</th>
                         <th>Technician</th>
                         <th>Customer Name</th>
                         <th>Address</th>
-                        <th>Date</th>
+                        {{-- <th>Date</th> --}}
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($activitys as $key => $activity)
                         <tr>
-                            <td>{{ $key + 1 }}</td>
+                            {{-- <td>{{ $key + 1 }}</td> --}}
+                            <td>{{ $activity->date }}</td>
                             <td>{{ $activity->technician_name }}</td>
                             <td>{{ $activity->name }}</td>
                             <td>{{ $activity->Address }}</td>
-                            <td>{{ $activity->date }}</td>
+                            {{-- <td>{{ $activity->date }}</td> --}}
                             <td>
                                 <a class="btn btn-sm btn-clean btn-icon" href="{{ route('activity.show', $activity->id) }}"
                                     title="Show"><i class="la la-eye"></i></a>

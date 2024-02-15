@@ -67,3 +67,7 @@ label.is-invalid{
     top: 0;
     width: auto;
 }
+span.select2-selection__placeholder {
+  font-size: 13px;
+  font-weight: 400;
+}

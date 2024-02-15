@@ -29,8 +29,8 @@ class CustomerReportController extends Controller
                 ->leftjoin('technician_master', 'activity_master.technician', '=', 'technician_master.id')
                 ->leftjoin('customers', 'activity_master.name', '=', 'customers.id')
                 ->where('activity_master.name', $name)
-                ->where('activity_master.created_at', '>=', $fromdate)
-                ->where('activity_master.created_at', '<=', $todate)
+                ->where('activity_master.date', '>=', $fromdate)
+                ->where('activity_master.date', '<=', $todate)
                 ->get();
         } else {
             $data = array();
