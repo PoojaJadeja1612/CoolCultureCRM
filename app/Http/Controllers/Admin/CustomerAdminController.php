@@ -109,14 +109,19 @@ class CustomerAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rules = [
-            'name' => [
-                'required',
-                Rule::unique('customers')->ignore($id),
-            ],
-        ];
-
-        $this->validate($request, $rules);
+        $validator = Validator::make($request->all(), [
+            'employeeId' => 'required|unique:users,employeeId,'.$id.',id',
+            'userName' => 'unique:users,userName,'.$id.',id',
+        ], [
+            'employeeId.required' => 'Please provide an employee name.',
+            'employeeId.unique' => 'The employee name already exists.',
+            'userName.unique' => 'The user name already exists.',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        
 
         $input = $request->all();
         $user = Customer::find($id);

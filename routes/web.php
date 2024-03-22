@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CustomerReportController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\permissionController;
 use App\Http\Controllers\Admin\ProxyLoginController;
+use App\Http\Controllers\Admin\ReportsController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TechnicianController;
 use App\Http\Controllers\Admin\TechnicianReportController;
@@ -84,6 +85,8 @@ Route::group(['middleware' => ['auth', 'logHis', 'setMailConfiguration']], funct
         Route::get('customerSearch', [CustomerReportController::class, 'create'])->name('customerSearch');
         Route::get('workReports', [WorkReportController::class, 'index'])->name('workReports');
         Route::get('workSearch', [WorkReportController::class, 'create'])->name('workSearch');
+        Route::get('reports',[ReportsController::class, 'index'])->name('reports');
+        Route::get('reportsSearch', [ReportsController::class, 'create'])->name('reportsSearch');
         Route::get('/getaddress', [ActivityController::class, 'getaddress'])->name('getaddress');
         Route::get('emailSetting', [CompanyMailSetting::class, 'emailSetting'])->name('emailSetting');
         Route::post('emailSettingUpdate', [CompanyMailSetting::class, 'emailSettingUpdate'])->name('emailSettingUpdate');
