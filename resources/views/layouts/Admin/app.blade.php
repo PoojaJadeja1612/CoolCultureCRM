@@ -22,6 +22,7 @@
     <link rel="shortcut icon" href="{{ asset('Logo/' . $setting->companyFavicon) }}" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="/path/to/select2.min.js"></script>
+    
     <style>
         input[type='checkbox'] {
             accent-color: {{ $setting->primaryColor }} !important;
@@ -679,6 +680,7 @@
                         </div>
                     </div>
                 </div>
+                @if(!isset($hideFooter) || !$hideFooter)
                 <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
                     <div
                         class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
@@ -689,6 +691,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>

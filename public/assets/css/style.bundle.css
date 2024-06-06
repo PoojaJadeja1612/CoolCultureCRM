@@ -59827,6 +59827,9 @@ body {
     padding-top: 65px; }
   .aside-fixed .wrapper {
     padding-left: 265px; }
+    .pooja{
+      padding: 0px;
+    }
   .aside-fixed.aside-minimize .wrapper {
     padding-left: 70px; }
   .container,

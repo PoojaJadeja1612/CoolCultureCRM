@@ -26,8 +26,11 @@ class ActivityController extends Controller
             ->get();
 
 
-    
-
+            $work = Work::orderby('name', 'ASC')->get();
+            $customer = Customer::orderby('name', 'ASC')->get();
+            $technician = Technician::orderby('technician_name', 'ASC')->get();
+            $jsonActivityWork = json_encode($work);
+            $jsonActivityWork = json_encode($customer);
         // dd($activitys);
         return view('Admin.activity.index')->with('activitys', $activitys);
     }
@@ -96,7 +99,8 @@ class ActivityController extends Controller
         $activityWork = ActivityWorkDetails::where('activity_id', $id)->get();
         // dd($activityWork);
         $jsonActivityWork = json_encode($activityWork);
-        return view('Admin.activity.edit')->with('work', $work)->with('customer', $customer)->with('technician', $technician)->with('activity', $activity)->with('jsonActivityWork', $jsonActivityWork)->with('activityWork', $activityWork);
+        $hideFooter = true; // Set this to true to hide the footer
+        return view('Admin.activity.edit')->with('work', $work)->with('customer', $customer)->with('technician', $technician)->with('activity', $activity)->with('jsonActivityWork', $jsonActivityWork)->with('activityWork', $activityWork)->with('hideFooter', $hideFooter);
     }
 
     public function update(Request $request, $id)

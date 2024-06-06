@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth', 'logHis', 'setMailConfiguration']], funct
         Route::resource('technician', TechnicianController::class);
         Route::resource('work', WorkController::class);
         Route::resource('activity', ActivityController::class);
+
         Route::post('CreateCustomerinActivity',[CustomerAdminController::class, 'CreateCustomerinActivity'])->name('CreateCustomerinActivity');
         Route::get('technicianReport', [TechnicianReportController::class, 'index'])->name('technicianReport');
         Route::get('technicianSearch', [TechnicianReportController::class, 'create'])->name('technicianSearch');

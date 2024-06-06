@@ -42,8 +42,12 @@
                                     title="Show"><i class="la la-eye"></i></a>
 
                                 {{-- @can('user-edit') --}}
-                                    <a class="btn btn-sm btn-clean btn-icon" href="{{ route('activity.edit', $activity->id) }}"
-                                        title="Edit"><i class="la la-edit"></i></a>
+                                    {{-- <a class="btn btn-sm btn-clean btn-icon" href="{{ route('activity.edit', $activity->id) }}"
+                                        title="Edit"><i class="la la-edit"></i></a> --}}
+                                        <a class="btn btn-sm btn-clean btn-icon edit-activity-btn" href="#" data-activity-id="{{ $activity->id }}" title="Edit">
+                                            <i class="la la-edit"></i>
+                                        </a>
+                                        
                                 {{-- @endcan --}}
                                 
                                 {{-- @can('user-delete') --}}
@@ -96,6 +100,20 @@
                                 </div>
                             </div>
                         </div>
+
+                        {{-- edit pop up box code start --}}
+                        <div class="modal fade" id="editActivityModal" tabindex="-1" role="dialog" aria-labelledby="editActivityModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height: 0px">
+                                    
+                                    <div class="modal-body" style="padding-top:80px;" id="editActivityModalContent">
+                                        <!-- Edit activity form will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {{-- edit pop up box code end --}}
                     @endforeach
                 </tbody>
             </table>
@@ -105,16 +123,33 @@
 @section('script')
 <script>
 $(document).ready(function() {
-    $('#example_datatable').dataTable( {
+    $('#example_datatable').dataTable({
         "order": [],
-    "columnDefs": [ {
-      "targets"  : 'no-sort',
-      "orderable": false,
-    }]
-} );
+        "columnDefs": [{
+            "targets": 'no-sort',
+            "orderable": false,
+        }]
+    });
+
+    // Event delegation for edit buttons
+    $(document).on('click', '.edit-activity-btn', function(e) {
+        e.preventDefault();
+        var activityId = $(this).data('activity-id');
+        $.ajax({
+            url: '/Admin/activity/' + activityId + '/edit',
+            type: 'GET',
+            success: function(response) {
+                $('#editActivityModalContent').html(response);
+                $('#editActivityModal').modal('show');
+            },
+            error: function(xhr) {
+                // Handle error
+            }
+        });
+    });
 });
 
-
-
 </script>
+
+
 @endsection
