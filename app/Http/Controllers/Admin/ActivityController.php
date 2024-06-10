@@ -87,7 +87,8 @@ class ActivityController extends Controller
         ->join('work_master', 'activity_work_master.work', 'work_master.id')
         ->where('activity_work_master.activity_id', $id)
         ->get();
-        return view('Admin.activity.show')->with('activity', $activity)->with('activityWork', $activityWork);
+        $hideFooter = true;
+        return view('Admin.activity.show')->with('activity', $activity)->with('activityWork', $activityWork)->with('hideFooter', $hideFooter);
     }
 
     public function edit($id)

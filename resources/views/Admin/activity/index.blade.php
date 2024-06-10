@@ -38,22 +38,27 @@
                             <td>{{ $activity->Address }}</td>
                             {{-- <td>{{ $activity->date }}</td> --}}
                             <td>
-                                <a class="btn btn-sm btn-clean btn-icon" href="{{ route('activity.show', $activity->id) }}"
-                                    title="Show"><i class="la la-eye"></i></a>
+                                {{-- <a class="btn btn-sm btn-clean btn-icon" href="{{ route('activity.show', $activity->id) }}"
+                                    title="Show"><i class="la la-eye"></i></a> --}}
+                                <a class="btn btn-sm btn-clean btn-icon view-activity-btn" href="#"
+                                    data-activity-id="{{ $activity->id }}" title="Show">
+                                    <i class="la la-eye"></i>
+                                </a>
 
                                 {{-- @can('user-edit') --}}
-                                    {{-- <a class="btn btn-sm btn-clean btn-icon" href="{{ route('activity.edit', $activity->id) }}"
+                                {{-- <a class="btn btn-sm btn-clean btn-icon" href="{{ route('activity.edit', $activity->id) }}"
                                         title="Edit"><i class="la la-edit"></i></a> --}}
-                                        <a class="btn btn-sm btn-clean btn-icon edit-activity-btn" href="#" data-activity-id="{{ $activity->id }}" title="Edit">
-                                            <i class="la la-edit"></i>
-                                        </a>
-                                        
+                                <a class="btn btn-sm btn-clean btn-icon edit-activity-btn" href="#"
+                                    data-activity-id="{{ $activity->id }}" title="Edit">
+                                    <i class="la la-edit"></i>
+                                </a>
+
                                 {{-- @endcan --}}
-                                
+
                                 {{-- @can('user-delete') --}}
-                                    <a class="btn btn-sm btn-clean btn-icon" data-bs-toggle="modal"
-                                        data-bs-target="#kt_modal_new_card-{{ $activity->id }}" title="Delete"><button
-                                            class="btn btn-sm btn-clean btn-icon"><i class="la la-trash"></i></button></a>
+                                <a class="btn btn-sm btn-clean btn-icon" data-bs-toggle="modal"
+                                    data-bs-target="#kt_modal_new_card-{{ $activity->id }}" title="Delete"><button
+                                        class="btn btn-sm btn-clean btn-icon"><i class="la la-trash"></i></button></a>
                                 {{-- @endcan --}}
 
                             </td>
@@ -72,18 +77,21 @@
                                                     viewBox="0 0 24 24" version="1.1">
                                                     <g transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)"
                                                         fill="#000000">
-                                                        <rect fill="#000000" x="0" y="7" width="16"
-                                                            height="2" rx="1" />
+                                                        <rect fill="#000000" x="0" y="7" width="16" height="2"
+                                                            rx="1" />
                                                         <rect fill="#000000" opacity="0.5"
                                                             transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000)"
-                                                            x="0" y="7" width="16" height="2"
-                                                            rx="1" />
+                                                            x="0" y="7" width="16" height="2" rx="1" />
                                                     </g>
                                                 </svg>
                                             </span>
                                         </div>
                                     </div>
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['activity.destroy', $activity->id], 'style' => 'display:inline']) !!}
+                                    {!! Form::open([
+                                        'method' => 'DELETE',
+                                        'route' => ['activity.destroy', $activity->id],
+                                        'style' => 'display:inline',
+                                    ]) !!}
                                     @method('DELETE')
                                     {{ csrf_field() }}
                                     <div class="modal-body">
@@ -102,18 +110,32 @@
                         </div>
 
                         {{-- edit pop up box code start --}}
-                        <div class="modal fade" id="editActivityModal" tabindex="-1" role="dialog" aria-labelledby="editActivityModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="editActivityModal" tabindex="-1" role="dialog"
+                            aria-labelledby="editActivityModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height: 0px">
-                                    
+
                                     <div class="modal-body" style="padding-top:80px;" id="editActivityModalContent">
                                         <!-- Edit activity form will be loaded here -->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         {{-- edit pop up box code end --}}
+
+                        <!-- View pop up box code start -->
+                        <div class="modal fade" id="viewActivityModal" tabindex="-1" role="dialog"
+                            aria-labelledby="viewActivityModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content"  style="height: 0px">
+                                    <div class="modal-body" id="viewActivityModalContent">
+                                        <!-- View activity details will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- View pop up box code end -->
                     @endforeach
                 </tbody>
             </table>
@@ -121,35 +143,51 @@
     </div>
 @endsection
 @section('script')
-<script>
-$(document).ready(function() {
-    $('#example_datatable').dataTable({
-        "order": [],
-        "columnDefs": [{
-            "targets": 'no-sort',
-            "orderable": false,
-        }]
-    });
+    <script>
+        $(document).ready(function() {
+            $('#example_datatable').dataTable({
+                "order": [],
+                "columnDefs": [{
+                    "targets": 'no-sort',
+                    "orderable": false,
+                }]
+            });
 
-    // Event delegation for edit buttons
-    $(document).on('click', '.edit-activity-btn', function(e) {
-        e.preventDefault();
-        var activityId = $(this).data('activity-id');
-        $.ajax({
-            url: '/Admin/activity/' + activityId + '/edit',
-            type: 'GET',
-            success: function(response) {
-                $('#editActivityModalContent').html(response);
-                $('#editActivityModal').modal('show');
-            },
-            error: function(xhr) {
-                // Handle error
-            }
+            // Event delegation for edit buttons
+            $(document).on('click', '.edit-activity-btn', function(e) {
+                e.preventDefault();
+                var activityId = $(this).data('activity-id');
+                $.ajax({
+                    url: '/Admin/activity/' + activityId + '/edit',
+                    type: 'GET',
+                    success: function(response) {
+                        $('#editActivityModalContent').html(response);
+                        $('#editActivityModal').modal('show');
+                    },
+                    error: function(xhr) {
+                        // Handle error
+                    }
+                });
+            });
+
+            // Event delegation for view buttons
+            $(document).on('click', '.view-activity-btn', function(e) {
+                e.preventDefault();
+                var activityId = $(this).data('activity-id');
+                $.ajax({
+                    url: '/Admin/activity/' + activityId,
+                    type: 'GET',
+                    success: function(response) {
+                        $('#viewActivityModalContent').html(response);
+                        $('#viewActivityModal').modal('show');
+                    },
+                    error: function(xhr) {
+                        // Handle error
+                    }
+                });
+            });
         });
-    });
-});
-
-</script>
+    </script>
 
 
 @endsection
