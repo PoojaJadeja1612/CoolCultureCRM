@@ -19,14 +19,13 @@ class TechnicianReportController extends Controller
     }
     public function create(Request $request)
     {
-        $name = $request->name;
         $todate = $request->todate;
         $fromdate = $request->fromdate;
 
         $fromdate = Carbon::parse($fromdate)->startOfDay();
         $todate = Carbon::parse($todate)->endOfDay();
 
-        if ($name != null && $todate != null && $fromdate != null) {
+        if ($todate != null && $fromdate != null) {
             // $data = Activity::select('activity_master.*', 'technician_master.technician_name', 'customers.name', 'activity_work_master.remark')
             //     ->leftjoin('activity_work_master.*', 'activity_master.id', '=', 'activity_work_master.activity_id')
             //     ->leftjoin('technician_master', 'activity_master.technician', '=', 'technician_master.id')
@@ -40,7 +39,6 @@ class TechnicianReportController extends Controller
             ->leftJoin('work_master', 'activity_work_master.work', '=', 'work_master.id')
             ->leftJoin('technician_master', 'activity_master.technician', '=', 'technician_master.id')
             ->leftJoin('customers', 'activity_master.name', '=', 'customers.id')
-            ->where('activity_master.technician', $name)
             ->where('activity_master.date', '>=', $fromdate)
             ->where('activity_master.date', '<=', $todate)
             ->whereNull('activity_master.deleted_at')
