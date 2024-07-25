@@ -537,7 +537,7 @@
                                                         <i class="menu-bullet ">
                                                             <span></span>
                                                         </i>
-                                                        <span class="menu-text">Technicians Report</span>
+                                                        <span class="menu-text">Report</span>
                                                     </a>
                                                 </li>
                                                 {{-- <li class="menu-item" aria-haspopup="true">
