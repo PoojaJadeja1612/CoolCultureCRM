@@ -9,10 +9,10 @@
                 </h3>
             </div>
             <div class="card-toolbar">
-                @can('customer-create')
+                {{-- @can('customer-create') --}}
                     <a href="{{ route('activity.create') }}" class="btn btn-primary font-weight-bolder">
                         </span>Add New Activity</a>
-                @endcan
+                {{-- @endcan --}}
             </div>
         </div>
         <div class="card-body">

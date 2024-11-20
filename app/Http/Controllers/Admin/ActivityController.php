@@ -86,6 +86,7 @@ class ActivityController extends Controller
         ->select('activity_work_master.*', 'work_master.name')
         ->join('work_master', 'activity_work_master.work', 'work_master.id')
         ->where('activity_work_master.activity_id', $id)
+        ->where('activity_work_master.deleted_at', null)
         ->get();
         $hideFooter = true;
         return view('Admin.activity.show')->with('activity', $activity)->with('activityWork', $activityWork)->with('hideFooter', $hideFooter);
@@ -98,7 +99,6 @@ class ActivityController extends Controller
         $technician = Technician::all();
         $activity = Activity::Find($id);
         $activityWork = ActivityWorkDetails::where('activity_id', $id)->get();
-        // dd($activityWork);
         $jsonActivityWork = json_encode($activityWork);
         $hideFooter = true; // Set this to true to hide the footer
         return view('Admin.activity.edit')->with('work', $work)->with('customer', $customer)->with('technician', $technician)->with('activity', $activity)->with('jsonActivityWork', $jsonActivityWork)->with('activityWork', $activityWork)->with('hideFooter', $hideFooter);

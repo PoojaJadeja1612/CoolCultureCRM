@@ -1,3 +1,4 @@
+
 @extends('layouts.Admin.app')
 @section('page', 'Edit Activity')
 {{-- @section('content') --}}
@@ -53,7 +54,10 @@
                         <select id="work" name="work[0]" class="form-control work">
                             <option value="" selected disabled>Select Work Done</option>
                             @foreach ($work as $works)
-                                <option value="{{ $works->id }}" {{ $works->id == $activityWork[0]->work ? 'selected' : '' }}>{{ $works->name }}</option>
+                                {{-- <option value="{{ $works->id }}" {{ $works->id == $activityWork[0]->work ? 'selected' : '' }}>{{ $works->name }}</option> --}}
+                                <option value="{{ $works->id }}" {{ $works->id == ($activityWork[0]->work ?? null) ? 'selected' : '' }}>
+                                    {{ $works->name ?? 'N/A' }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
